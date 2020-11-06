@@ -17,5 +17,9 @@
 
 console.log(arguments.callee.toString()); //输出外层函数
 
+function demo(){
+    console.log(arguments.callee.toString());
+} //输出demo function
 
+demo()
 
