@@ -18,7 +18,7 @@
 let fs = require('fs')
 
 //调用writeFile方法
-fs.writeFile('./demo.txt','hello node',(err)=>{
+fs.writeFile('./demo.txt','hello node',{mode:0o444},(err)=>{
     if(err){
         console.log('文件写入失败',err);
     }else{
