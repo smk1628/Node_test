@@ -9,6 +9,9 @@
  *                      --0o111 文件可执行
  *                      --0o222 文件可写入
  *                      --0o444 文件可读取
+ *                  --flag 打开文件要执行的操作，默认值是'w'
+ *                      --a 追加
+ *                      --w 写入
  *              --callback 回掉函数
  *                  --err 错误对象
  *  在Node中有这样一个原则：错误优先
@@ -18,7 +21,15 @@
 let fs = require('fs')
 
 //调用writeFile方法
-fs.writeFile('./demo.txt','hello node',{mode:0o444},(err)=>{
+// fs.writeFile('./demo.txt','hello node',(err)=>{
+//     if(err){
+//         console.log('文件写入失败',err);
+//     }else{
+//
+//         console.log('文件写入成功！');
+//     }
+// })
+fs.writeFile('./demo.txt','hello node',{mode:0o666},(err)=>{
     if(err){
         console.log('文件写入失败',err);
     }else{
