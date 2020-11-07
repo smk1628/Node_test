@@ -8,8 +8,8 @@
  *          --mode
  *          --autoClose
  *          --emitClose
- *          --start
- *          --end
+ *          --start 起始偏移量
+ *          --end 结束偏移量
  *          --highWaterMark 控制每次读取数据的大小，默认值是：64*1024B（64KB）根据服务器内存来设置
  *
  * */
