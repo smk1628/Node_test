@@ -29,7 +29,7 @@ let fs = require('fs')
 //         console.log('文件写入成功！');
 //     }
 // })
-fs.writeFile('./demo.txt','hello node',{mode:0o666},(err)=>{
+fs.writeFile(__dirname+'/demo.txt','hello node',{mode:0o666},(err)=>{
     if(err){
         console.log('文件写入失败',err);
     }else{
