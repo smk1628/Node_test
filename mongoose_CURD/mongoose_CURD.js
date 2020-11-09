@@ -47,7 +47,7 @@ mongoose.connection.on('open',function (err){
         //创建模型对象
         let stuModel = mongoose.model('studens',studentRule) //用于生成某个集合所对应的模型对象
         //CURD
-        //新增操作 -C
+        //新增操作 -C create
         /*stuModel.create({
             stu_id:'003',
             name:'coco',
@@ -63,7 +63,7 @@ mongoose.connection.on('open',function (err){
             }
         })*/
 
-        //查询操作 -R
+        //查询操作 -R find findOne
         //find()方法返回的是一个数组，若查询结果为空，则返回一个空数组
         /*stuModel.find({name:'coco'},function (err,data){
             if(!err){
@@ -81,7 +81,7 @@ mongoose.connection.on('open',function (err){
             }
         })*/
 
-        //更新操作 -U
+        //更新操作 -U updateOne updateMany
         /*stuModel.updateOne({name:'coco'},{age:6},function (err,data){
             if(!err){
                 console.log(data);
@@ -90,7 +90,7 @@ mongoose.connection.on('open',function (err){
             }
         })*/
 
-        //删除操作 -D
+        //删除操作 -D deleteOne deleteMany
         /*stuModel.deleteMany({age:18},function (err,data){
             if(!err){
                 console.log(data);
