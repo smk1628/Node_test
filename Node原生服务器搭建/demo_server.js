@@ -18,6 +18,7 @@ let server = http.createServer(function (request,response){
     let params = request.url.split('?')[1] //name=zhangsan&age=18
     let objParams = qs.parse(params) //{name:'zhangsan',age:18}
     console.log(objParams)
+    console.log(request.method) //GET
     response.setHeader('content-type','text/html;charset=utf-8')
     response.end('服务器请求成功！')
 })

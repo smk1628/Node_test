@@ -5,6 +5,7 @@
   "author": "smk1628 <1628150422@qq.com>",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.17.1",
     "mongoose": "^5.10.13"
   }
 }
