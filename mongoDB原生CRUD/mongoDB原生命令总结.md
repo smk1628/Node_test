@@ -60,4 +60,3 @@
 > //删除所有年龄小于等于19的学生
 >       举例：db.students.remove({age:{$lte:19}})
 > ```
-> 补充：deleteOne,deleteMany,没有delete方法（会报错）
