@@ -2,6 +2,8 @@
 const express = require('express')
 //1.创建app服务对象
 const app = express()
+//禁止服务器返回X-Powered-By
+app.disable('x-powered-by')
 //2.配置路由 ----对请求的url进行分类，服务器根据分类决定交给谁去处理
 //一级路由
 app.get('/haha',function (request,response){
