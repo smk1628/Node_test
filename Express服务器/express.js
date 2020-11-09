@@ -19,5 +19,5 @@ app.get('/',function (request,response){
 //指定服务器运行端口（绑定监听端口）
 app.listen(3000,function (err){
     if(!err) console.log('server success')
-
+    else console.log(err)
 })
