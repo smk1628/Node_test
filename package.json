@@ -3,5 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "smk1628 <1628150422@qq.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^5.10.13"
+  }
 }
