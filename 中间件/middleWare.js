@@ -19,7 +19,8 @@ app.get('/middle',guardPic,function (requset,response){
     response.send('这是二级路由')
 })*/
 /**
- * 使用第三方中间件
+ * 使用第三方body-parser中间件
+ * 解析post请求体中所携带的urlencoded编码形式的参数为一个对象，随后挂载到request对象上
  * */
 /*const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded({extended:true}))
@@ -27,7 +28,19 @@ app.post('/test',(request,response)=>{
     console.log(request.body) //{ user: 'admin', pwd: '123456' } 借助第三方中间件获取post中body内容
     response.send('test')
 })*/
-
+/**
+ * 使用express自带的中间件
+ * 解析post请求体中所携带的urlencoded编码形式的参数为一个对象，随后挂载到request对象上
+ * */
+/*app.use(express.urlencoded({extended:true}))
+app.post('/test',(request,response)=>{
+    console.log(request.body) //{ user: 'admin', pwd: '123456' } 借助express中间件获取post中body内容
+    response.send('test')
+})*/
+/**
+ * 使用内置中间件去暴露静态资源
+ * */
+app.use(express.static(__dirname+'/public'))
 
 app.get('/',function (requset,response){
     response.send('这是根路由')
