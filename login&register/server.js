@@ -12,6 +12,13 @@ app.use(express.urlencoded({extended:true}))
 const usersModel = require('./models/usersModel')
 //引入db模块
 const db = require('./db/db')
+
+//校验email表达式
+const emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+//校验昵称表达式
+const nameReg = /[\u4e00-\u9fa5]/gm
+//校验密码表达式
+const passwordReg = /^[a-zA-z0-9_@#.+&]{6,20}$/
 //连接数据库
 db((err)=>{
     if(!err){
@@ -25,7 +32,25 @@ db((err)=>{
         })
         //用于处理用户的登录请求
         app.post('/login',(request,response)=>{
+            //获取用户输入
+            const {email,password} = request.body
+            //console.log(email,password)
+            if(!emailReg.test(email)){
+                response.send('您的邮箱格式不正确，请重新输入！')
+            }else if(!passwordReg.test(password)){
+                response.send('您的密码格式不正确，请重新输入！')
+            }else {
+                usersModel.findOne({email},function (err,data){
+                    if(data){
+                        if(data.email === email && (data.password).toString() === password){
 
+                            response.send(`欢迎${data.name}登录`)
+                        }
+                    }else {
+                        response.send('用户名或密码错误，请重新输入')
+                    }
+                })
+            }
         })
         //用于处理用户的注册请求
         app.post('/register',(request,response)=>{
@@ -38,12 +63,7 @@ db((err)=>{
              }*/
             //获取用户输入
             const {email,name,password,re_password} = request.body
-            //校验email表达式
-            const emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
-            //校验昵称表达式
-            const nameReg = /[\u4e00-\u9fa5]/gm
-            //校验密码表达式
-            const passwordReg = /^[a-zA-z0-9_@#.+&]{6,20}$/
+
             //使用正则去校验
             if(!emailReg.test(email)){
                 response.send('邮箱不合法')
