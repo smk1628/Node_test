@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>person</title>
+</head>
+<body>
+<!--ejs语法
+        1.< %% > 里面能写任何js代码，但是不会向浏览器输出任何东西
+        2.< %-% > 能够读取后端传递过来的对象里的key指定的value渲染到页面,能够渲染浏览器标签
+        3.< %=% > 能够读取后端传递过来的对象里的key指定的value渲染到页面，不能渲染标签
+-->
+<%
+    for(var i =0;i<persons.length;i++){
+        let item = persons[i]%>
+        <ul style="list-style: none">
+            <li>姓名：<%=item.name%></li>
+            <li>年龄：<%=item.age%></li>
+        </ul>
+    <%}%>
+</body>
+</html>

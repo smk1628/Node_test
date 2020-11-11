@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>注册</title>
+</head>
+<style>
+    span.err{
+        color: red;
+    }
+</style>
+<body>
+<form action="http://localhost:3000/register" method="post">
+    邮箱：<input type="email" name="email"><span class="err"><%=errMsg.emailErr%></span><br><br>
+    昵称：<input type="text" name="name"><span class="err"><%=errMsg.nameErr%></span><br><br>
+    密码：<input type="password" name="password"><span class="err"><%=errMsg.passwordErr%></span><br><br>
+    重复密码：<input type="password" name="re_password"><span class="err"><%=errMsg.re_passwordErr%></span><br><br>
+    <input type="submit">
+</form>
+</body>
+</html>
