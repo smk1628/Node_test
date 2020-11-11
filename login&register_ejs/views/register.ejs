@@ -13,6 +13,7 @@
     }
 </style>
 <body>
+<span class="err"><%=errMsg.netErr%></span>
 <form action="http://localhost:3000/register" method="post">
     邮箱：<input type="email" name="email"><span class="err"><%=errMsg.emailErr%></span><br><br>
     昵称：<input type="text" name="name"><span class="err"><%=errMsg.nameErr%></span><br><br>

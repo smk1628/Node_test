@@ -18,22 +18,33 @@ const passwordReg = /^[a-zA-z0-9_@#.+&]{6,20}$/
 router.post('/login',(request,response)=>{
     //获取用户输入
     const {email,password} = request.body
+    //收集错误信息
+    let errMsg = {}
     //console.log(email,password)
     if(!emailReg.test(email)){
-        response.send('您的邮箱格式不正确，请重新输入！')
-    }else if(!passwordReg.test(password)){
-        response.send('您的密码格式不正确，请重新输入！')
-    }else {
-        usersModel.findOne({email,password},function (err,data){
-            if(data){
-                response.send(`欢迎${data.name}登录`)
-            }else if(err){
-                response.send('网络不稳定，请稍后再试！')
-            }else {
-                response.send('用户名或密码错误，请重新输入')
-            }
-        })
+        //response.send('您的邮箱格式不正确，请重新输入！')
+        errMsg.emailErr = '您的邮箱格式不正确，请重新输入！'
     }
+    if(!passwordReg.test(password)){
+        //response.send('您的密码格式不正确，请重新输入！')
+        errMsg.passwordErr = '您的密码格式不正确，请重新输入！'
+    }
+    if(JSON.stringify(errMsg) !== '{}'){
+        response.render('login',{errMsg})
+    }
+    usersModel.findOne({email,password},function (err,data){
+        if(data){
+            response.send(`欢迎${data.name}登录`)
+        }else if(err){
+            //response.send('网络不稳定，请稍后再试！')
+            errMsg.netErr = '当前网络不稳定，请稍后再试！'
+            response.render('login',{errMsg})
+        }else {
+            //response.send('用户名或密码错误，请重新输入')
+            errMsg.loginErr = '用户名或密码错误，请重新输入'
+            response.render('login',{errMsg})
+        }
+    })
 })
 //用于处理用户的注册请求 ---业务路由
 router.post('/register',(request,response)=>{
@@ -68,19 +79,28 @@ router.post('/register',(request,response)=>{
     if(JSON.stringify(errMsg) !== '{}'){
         //console.log(errMsg)
         response.render('register',{errMsg})
-    } else {
-        //去数据库中查询邮箱是否注册过
-        usersModel.findOne({email},function (err,data){
-            if(data){
-                response.send('该邮箱已注册！')
-            }else {
-                usersModel.create({email,name,password},function (err,data){
-                    if(!err) response.send('注册成功！')
-                    else response.send('注册失败，稍后重试！')
-                })
+        return
+    }
+    //去数据库中查询邮箱是否注册过
+    usersModel.findOne({email},function (err,data){
+        if(data){
+            //response.send('该邮箱已注册！')
+            errMsg.emailErr = '该邮箱已注册！'
+            response.render('register',{errMsg})
+            return
+        }
+        usersModel.create({email,name,password},function (err,data){
+            if(!err){
+                console.log(`邮箱为${email}的用户注册成功！`)
+                response.redirect('/login')
+            }
+            else{
+                //response.send('注册失败，稍后重试！')
+                errMsg.netErr = '当前网络不稳定，稍后重试！'
+                response.render('register',{errMsg})
             }
         })
-    }
+    })
 })
 module.exports = function (){
     return router    //为了迎合中间件理念，中间件应该是一个函数
