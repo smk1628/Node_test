@@ -70,4 +70,6 @@ router.post('/register',(request,response)=>{
         })
     }
 })
-module.exports = router
+module.exports = function (){
+    return router    //为了迎合中间件理念，中间件应该是一个函数
+}

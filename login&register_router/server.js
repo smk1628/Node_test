@@ -18,9 +18,9 @@ const Login_registerRouter = require('./router/Login_registerRouter')
 db((err)=>{
     if(!err){
         //使用UIRouter路由
-        app.use(UIRouter)
+        app.use(UIRouter())
         //使用Login_registerRouter路由
-        app.use(Login_registerRouter)
+        app.use(Login_registerRouter())
         //监听端口
         app.listen('3000',function (err){
             if(!err) console.log('server success');
