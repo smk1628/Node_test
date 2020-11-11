@@ -13,11 +13,11 @@
     }
 </style>
 <body>
-<span class="err"><%=errMsg.loginErr%></span>
-<span class="err"><%=errMsg.netErr%></span>
+<span class="err"><%=userMsg.loginErr%></span>
+<span class="err"><%=userMsg.netErr%></span>
 <form action="http://localhost:3000/login" method="post">
-    邮箱：<input type="email" name="email" value="<%=errMsg.email%>"><span class="err"><%=errMsg.emailErr%></span><br><br>
-    密码：<input type="password" name="password" value="<%=errMsg.password%>"><span class="err"><%=errMsg.passwordErr%></span><br><br>
+    邮箱：<input type="email" name="email" value="<%=userMsg.email%>"><span class="err"><%=userMsg.emailErr%></span><br><br>
+    密码：<input type="password" name="password" value="<%=userMsg.password%>"><span class="err"><%=userMsg.passwordErr%></span><br><br>
     <input type="submit">
 </form>
 </body>
