@@ -30,7 +30,7 @@ db((err)=>{
         app.get('/register',(request,response)=>{
             response.sendFile(__dirname+'/public/register.html')
         })
-        //用于处理用户的登录请求
+        //用于处理用户的登录请求 ---业务路由
         app.post('/login',(request,response)=>{
             //获取用户输入
             const {email,password} = request.body
@@ -52,7 +52,7 @@ db((err)=>{
                 })
             }
         })
-        //用于处理用户的注册请求
+        //用于处理用户的注册请求 ---业务路由
         app.post('/register',(request,response)=>{
             //console.log(request.body)
             /* {
