@@ -31,6 +31,7 @@ router.post('/login',(request,response)=>{
     }
     if(JSON.stringify(errMsg) !== '{}'){
         response.render('login',{errMsg})
+        return
     }
     usersModel.findOne({email,password},function (err,data){
         if(data){
