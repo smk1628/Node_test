@@ -93,7 +93,8 @@ router.post('/register',(request,response)=>{
         usersModel.create({email,name,password},function (err,data){
             if(!err){
                 console.log(`邮箱为${email}的用户注册成功！`)
-                response.redirect('/login')
+                //response.redirect('/login')
+                response.render('login',{errMsg:{email,password}})
             }
             else{
                 //response.send('注册失败，稍后重试！')

@@ -16,8 +16,8 @@
 <span class="err"><%=errMsg.loginErr%></span>
 <span class="err"><%=errMsg.netErr%></span>
 <form action="http://localhost:3000/login" method="post">
-    邮箱：<input type="email" name="email"><span class="err"><%=errMsg.emailErr%></span><br><br>
-    密码：<input type="password" name="password"><span class="err"><%=errMsg.passwordErr%></span><br><br>
+    邮箱：<input type="email" name="email" value="<%=errMsg.email%>"><span class="err"><%=errMsg.emailErr%></span><br><br>
+    密码：<input type="password" name="password" value="<%=errMsg.password%>"><span class="err"><%=errMsg.passwordErr%></span><br><br>
     <input type="submit">
 </form>
 </body>
