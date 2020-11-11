@@ -12,16 +12,19 @@ app.use(express.urlencoded({extended:true}))
 const usersModel = require('./models/usersModel')
 //引入db模块
 const db = require('./db/db')
-
-//校验email表达式
-const emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
-//校验昵称表达式
-const nameReg = /[\u4e00-\u9fa5]/gm
-//校验密码表达式
-const passwordReg = /^[a-zA-z0-9_@#.+&]{6,20}$/
 //连接数据库
 db((err)=>{
     if(!err){
+        //校验email表达式
+        const emailReg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
+        //校验昵称表达式
+        const nameReg = /[\u4e00-\u9fa5]/gm
+        //校验密码表达式
+        const passwordReg = /^[a-zA-z0-9_@#.+&]{6,20}$/
+        //重定向根路由
+        app.get('/',(request,response)=>{
+            response.redirect('https://www.baidu.com/')
+        })
         //展示登录页面路由 ---UI路由
         app.get('/login',(request,response)=>{
             response.sendFile(__dirname+'/public/login.html')
@@ -42,10 +45,9 @@ db((err)=>{
             }else {
                 usersModel.findOne({email,password},function (err,data){
                     if(data){
-                        if(data.email === email && (data.password).toString() === password){
-
                             response.send(`欢迎${data.name}登录`)
-                        }
+                    }else if(err){
+                        response.send('网络不稳定，请稍后再试！')
                     }else {
                         response.send('用户名或密码错误，请重新输入')
                     }
