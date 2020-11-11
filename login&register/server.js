@@ -40,7 +40,7 @@ db((err)=>{
             }else if(!passwordReg.test(password)){
                 response.send('您的密码格式不正确，请重新输入！')
             }else {
-                usersModel.findOne({email},function (err,data){
+                usersModel.findOne({email,password},function (err,data){
                     if(data){
                         if(data.email === email && (data.password).toString() === password){
 
