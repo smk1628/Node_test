@@ -34,3 +34,4 @@ let studentRule = new Schema({
 //创建模型对象
 module.exports =  mongoose.model('studens',studentRule) //用于生成某个集合所对应的模型对象
 
+

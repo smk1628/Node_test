@@ -29,3 +29,4 @@ let usersRule = new Schema({
 module.exports =  mongoose.model('users',usersRule) //用于生成某个集合所对应的模型对象
 
 
+
