@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>verifiCode</title>
+</head>
+<body>
+<h1>该页面测试取消上一次请求</h1>
+<button id="btn">点击获取验证码</button><span id="code"></span>
+</body>
+<script>
+	let btn = document.getElementById('btn')
+	let code = document.getElementById('code')
+	let lastXhl
+	btn.addEventListener('click',()=>{
+	    if(lastXhl){
+	        lastXhl.abort()
+		}
+            lastXhl = getAuthCode()
+	})
+	function getAuthCode(){
+	    let xhr = new XMLHttpRequest()
+		xhr.onreadystatechange=()=>{
+	        if(xhr.readyState === 4){
+	            if(xhr.response !== '') code.innerText = '验证码：'+xhr.response
+			}
+		}
+		xhr.open('get','http://localhost:3000/get_code')
+		xhr.send()
+		return xhr
+	}
+</script>
+</html>
