@@ -1,13 +1,13 @@
 const express = require('express')
 const app = express()
-app.use(express.urlencoded({extended:true})) //requset.body
+app.use(express.urlencoded({extended:true})) //request.body
 app.use(express.static(__dirname+'/public'))
-app.get('/ajax_get',function (requset,response){
-    console.log(requset.query)
+app.get('/ajax_get',function (request,response){
+    console.log(request.query)
     response.send('get')
 })
-app.post('/ajax_post',function (requset,response){
-    console.log(requset.body)
+app.post('/ajax_post',function (request,response){
+    console.log(request.body)
     response.send('post')
 })
 app.listen('3000',(err)=>{
