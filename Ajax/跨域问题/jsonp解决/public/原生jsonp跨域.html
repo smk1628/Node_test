@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>原生jsonp跨域</title>
+</head>
+<body>
+<h1>用于测试原生jsonp解决跨域问题</h1>
+<button id="btn">点击我发送请求</button>
+</body>
+<script>
+	let btn = document.getElementById('btn')
+	btn.onclick=()=>{
+	    //1提前定义好一个等待被调用的函数
+		window.jsonp_get = (result)=>{
+		    console.log(result)
+		}
+		//2创建一个script节点
+		const scriptNode = document.createElement('script')
+		//3为节点指定src地址
+		scriptNode.src = 'http://localhost:3000/json_get?callback=jsonp_get'
+		//4将节点插入页面
+		document.body.appendChild(scriptNode)
+	}
+</script>
+</html>
